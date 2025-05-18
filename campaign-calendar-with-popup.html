@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성수회중 캠페인 봉사 일정</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f0e5;
+      color: #463a28;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #8e6f4e;
+      font-size: 28px;
+    }
+    
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .calendar th {
+      background-color: #8e6f4e;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #d9ccba;
+    }
+    
+    .calendar td {
+      border: 1px solid #d9ccba;
+      padding: 10px;
+      height: 100px;
+      vertical-align: top;
+    }
+    
+    .date-number {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .event {
+      font-size: 12px;
+      margin-bottom: 4px;
+      padding: 3px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    .event:hover {
+      opacity: 0.8;
+    }
+    
+    .morning {
+      background-color: #e6f2da;
+      border-left: 3px solid #85b554;
+    }
+    
+    .afternoon {
+      background-color: #f9e9d3;
+      border-left: 3px solid #dea356;
+    }
+    
+    .sunday {
+      color: #d85c5c;
+    }
+    
+    .april {
+      background-color: #f6fbf2;
+    }
+    
+    .may {
+      background-color: #fef7eb;
+    }
+    
+    .month-label {
+      background-color: #8e6f4e;
+      color: white;
+      padding: 8px;
+      text-align: center;
+      font-weight: bold;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    
+    /* 모달 스타일 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #8e6f4e;
+    }
+    
+    .close:hover {
+      color: #463a28;
+    }
+    
+    .event-details h3 {
+      margin-bottom: 15px;
+      color: #8e6f4e;
+      border-bottom: 1px solid #d9ccba;
+      padding-bottom: 10px;
+    }
+    
+    .event-details h4 {
+      margin: 15px 0 10px;
+      color: #8e6f4e;
+    }
+    
+    .event-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    
+    .event-table th, .event-table td {
+      border: 1px solid #d9ccba;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    .event-table th {
+      background-color: #f5f0e5;
+      color: #463a28;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>서울 캠페인 봉사 일정표 - 성수회중</h1>
+    <div class="month-label">2025년 4월 21일 ~ 5월 18일</div>
+    
+    <table class="calendar">
+      <thead>
+        <tr>
+          <th class="sunday">일</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th>토</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 4월 셋째 주 -->
+        <tr>
+          <td class="april sunday">
+            <div class="date-number sunday">20</div>
+          </td>
+          <td class="april">
+            <div class="date-number">21</div>
+          </td>
+          <td class="april">
+            <div class="date-number">22</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-22')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-22')">오후: 주민센터</div>
+          </td>
+          <td class="april">
+            <div class="date-number">23</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-23')">오전: 뚝섬역</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-23')">오후: 지식산업센터</div>
+          </td>
+          <td class="april">
+            <div class="date-number">24</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-24')">오전: 성화공원</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-24')">오후: 여성발전센터</div>
+          </td>
+          <td class="april">
+            <div class="date-number">25</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-25')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-25')">오후: 왕국회관</div>
+          </td>
+          <td class="april">
+            <div class="date-number">26</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-26')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-26')">오후: 공원 봉사</div>
+          </td>
+        </tr>
+        
+        <!-- 4월 넷째 주 / 5월 첫째 주 -->
+        <tr>
+          <td class="april sunday">
+            <div class="date-number sunday">27</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-27')">오전: 집회</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-27')">오후: 공원 봉사</div>
+          </td>
+          <td class="april">
+            <div class="date-number">28</div>
+          </td>
+          <td class="april">
+            <div class="date-number">29</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-29')">오전: 주민센터</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-29')">오후: 주민센터</div>
+          </td>
+          <td class="april">
+            <div class="date-number">30</div>
+            <div class="event morning" onclick="showEventDetails('2025-04-30')">오전: 뚝섬역</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-04-30')">오후: 지식산업센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">1</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-01')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-01')">오후: 여성발전센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">2</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-02')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-02')">오후: 왕국회관</div>
+          </td>
+          <td class="may">
+            <div class="date-number">3</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-03')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-03')">오후: 공원 봉사</div>
+          </td>
+        </tr>
+        
+        <!-- 5월 첫째 주 -->
+        <tr>
+          <td class="may sunday">
+            <div class="date-number sunday">4</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-04')">오전: 집회</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-04')">오후: 공원 봉사</div>
+          </td>
+          <td class="may">
+            <div class="date-number">5</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-05')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-05')">오후: 공원 봉사</div>
+          </td>
+          <td class="may">
+            <div class="date-number">6</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-06')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-06')">오후: 공원 봉사</div>
+          </td>
+          <td class="may">
+            <div class="date-number">7</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-07')">오전: 뚝섬역</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-07')">오후: 지식산업센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">8</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-08')">오전: 성화공원</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-08')">오후: 여성발전센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">9</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-09')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-09')">오후: 왕국회관</div>
+          </td>
+          <td class="may">
+            <div class="date-number">10</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-10')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-10')">오후: 공원 봉사</div>
+          </td>
+        </tr>
+        
+        <!-- 5월 둘째 주 -->
+        <tr>
+          <td class="may sunday">
+            <div class="date-number sunday">11</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-11')">오전: 집회</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-11')">오후: 공원 봉사</div>
+          </td>
+          <td class="may">
+            <div class="date-number">12</div>
+          </td>
+          <td class="may">
+            <div class="date-number">13</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-13')">오전: 주민센터</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-13')">오후: 주민센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">14</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-14')">오전: 뚝섬역</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-14')">오후: 지식산업센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">15</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-15')">오전: 성화공원</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-15')">오후: 여성발전센터</div>
+          </td>
+          <td class="may">
+            <div class="date-number">16</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-16')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-16')">오후: 왕국회관</div>
+          </td>
+          <td class="may">
+            <div class="date-number">17</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-17')">오전: 왕국회관</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-17')">오후: 공원 봉사</div>
+          </td>
+        </tr>
+        
+        <!-- 5월 셋째 주 -->
+        <tr>
+          <td class="may sunday">
+            <div class="date-number sunday">18</div>
+            <div class="event morning" onclick="showEventDetails('2025-05-18')">오전: 집회</div>
+            <div class="event afternoon" onclick="showEventDetails('2025-05-18')">오후: 공원 봉사</div>
+          </td>
+          <td colspan="6"></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div style="margin-top: 20px; border-top: 1px solid #d9ccba; padding-top: 15px;">
+      <h3 style="color: #8e6f4e;">범례</h3>
+      <div style="display: flex; margin-top: 10px;">
+        <div style="margin-right: 20px;">
+          <div class="event morning" style="display: inline-block; width: 80px;">오전 봉사</div>
+          <span>9:45~12:00</span>
+        </div>
+        <div>
+          <div class="event afternoon" style="display: inline-block; width: 80px;">오후 봉사</div>
+          <span>평일 14:00~16:00 / 주말 14:00~17:00</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 모달 창 -->
+    <div id="eventModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="eventDetails" class="event-details">
+          <!-- 상세 정보가 자바스크립트로 채워집니다 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 봉사 일정 데이터
+    const scheduleData = {
+      '2025-04-22': {
+        date: '4월 22일(화)',
+        morning: {
+          location: '왕국회관 (뚝섬로5길 19)',
+          area: '해당 요일 구역(호별)',
+          leader: '신보현 010-2311-4251',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '성수1가2동 주민센터',
+          area: '서울숲 주변, 카페거리(호별)',
+          leader: '신보현 010-2311-4251',
+          dress: '정장'
+        }
+      },
+      '2025-04-23': {
+        date: '4월 23일(수)',
+        morning: {
+          location: '뚝섬역 2번출구 (지하철 2호선)',
+          area: '해당 요일 구역(호별)',
+          leader: '이재영 010-5013-3302',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '(추후 공지)',
+          area: '지식산업센터(호별)',
+          leader: '변창훈 010-4420-0070',
+          dress: '정장'
+        }
+      },
+      '2025-04-24': {
+        date: '4월 24일(목)',
+        morning: {
+          location: '성화공원(신양장로교회) (자양동 199-4)',
+          area: '해당 요일 구역(호별)',
+          leader: '정종우 010-2008-9661',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '서울시 동부여성 발전센터 (아차산로30길 36)',
+          area: '양꼬치 거리 & 로데오 거리(호별)',
+          leader: '이충관 010-9733-1421',
+          dress: '정장'
+        }
+      },
+      '2025-04-25': {
+        date: '4월 25일(금)',
+        morning: {
+          location: '왕국회관',
+          area: '연무장길 주변(호별)',
+          leader: '신보현 010-2311-4251',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '이재영 010-5013-3302',
+          dress: '정장'
+        }
+      },
+      '2025-04-26': {
+        date: '4월 26일(토)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '김권일 010-8985-2506',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '류형준 010-8764-9103',
+          dress: '평상복'
+        }
+      },
+      '2025-04-27': {
+        date: '4월 27일(일)',
+        morning: {
+          location: '왕국회관',
+          area: '집회 (오전 10시)',
+          leader: '-',
+          dress: '-'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '전우재 010-3255-1468',
+          dress: '평상복'
+        }
+      },
+      '2025-04-29': {
+        date: '4월 29일(화)',
+        morning: {
+          location: '성수1가2동 주민센터',
+          area: '해당 요일 구역(호별)',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '성수1가2동 주민센터',
+          area: '서울숲 주변, 카페거리(호별)',
+          leader: '신보현',
+          dress: '정장'
+        }
+      },
+      '2025-04-30': {
+        date: '4월 30일(수)',
+        morning: {
+          location: '뚝섬역 2번출구',
+          area: '해당 요일 구역(호별)',
+          leader: '이재영',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '(추후 공지)',
+          area: '지식산업센터(호별)',
+          leader: '변창훈',
+          dress: '정장'
+        }
+      },
+      '2025-05-01': {
+        date: '5월 1일(목)',
+        morning: {
+          location: '왕국회관',
+          area: '회관 근처 호별(또는 전시대+가두)',
+          leader: '정종우',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '서울시 동부여성 발전센터',
+          area: '양꼬치 거리 & 로데오 거리(호별)',
+          leader: '이충관 010-9733-1421',
+          dress: '정장'
+        }
+      },
+      '2025-05-02': {
+        date: '5월 2일(금)',
+        morning: {
+          location: '왕국회관',
+          area: '연무장길 주변(호별)',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '이재영',
+          dress: '정장'
+        }
+      },
+      '2025-05-03': {
+        date: '5월 3일(토)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '김권일',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '김기홍 010-5391-3043',
+          dress: '평상복'
+        }
+      },
+      '2025-05-04': {
+        date: '5월 4일(일)',
+        morning: {
+          location: '왕국회관',
+          area: '집회 (오전 10시)',
+          leader: '-',
+          dress: '-'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '전우재',
+          dress: '평상복'
+        }
+      },
+      '2025-05-05': {
+        date: '5월 5일(월)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '신보현',
+          dress: '평상복'
+        }
+      },
+      '2025-05-06': {
+        date: '5월 6일(화)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '신보현',
+          dress: '평상복'
+        }
+      },
+      '2025-05-07': {
+        date: '5월 7일(수)',
+        morning: {
+          location: '뚝섬역 2번출구',
+          area: '해당 요일 구역(호별)',
+          leader: '이재영',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '(추후 공지)',
+          area: '지식산업센터(호별)',
+          leader: '변창훈',
+          dress: '정장'
+        }
+      },
+      '2025-05-08': {
+        date: '5월 8일(목)',
+        morning: {
+          location: '성화공원(신양장로교회)',
+          area: '해당 요일 구역(호별)',
+          leader: '정종우',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '서울시 동부여성 발전센터',
+          area: '양꼬치 거리 & 로데오 거리(호별)',
+          leader: '이재영',
+          dress: '정장'
+        }
+      },
+      '2025-05-09': {
+        date: '5월 9일(금)',
+        morning: {
+          location: '왕국회관',
+          area: '연무장길 주변(호별)',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '이재영',
+          dress: '정장'
+        }
+      },
+      '2025-05-10': {
+        date: '5월 10일(토)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '김권일',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '이충관 010-9733-1421',
+          dress: '평상복'
+        }
+      },
+      '2025-05-11': {
+        date: '5월 11일(일)',
+        morning: {
+          location: '왕국회관',
+          area: '집회 (오전 10시)',
+          leader: '-',
+          dress: '-'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '전우재',
+          dress: '평상복'
+        }
+      },
+      '2025-05-13': {
+        date: '5월 13일(화)',
+        morning: {
+          location: '성수1가2동 주민센터',
+          area: '해당 요일 구역(호별)',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '성수1가2동 주민센터',
+          area: '서울숲 주변, 카페거리(호별)',
+          leader: '신보현',
+          dress: '정장'
+        }
+      },
+      '2025-05-14': {
+        date: '5월 14일(수)',
+        morning: {
+          location: '뚝섬역 2번출구',
+          area: '해당 요일 구역(호별)',
+          leader: '이재영',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '(추후 공지)',
+          area: '지식산업센터(호별)',
+          leader: '변창훈',
+          dress: '정장'
+        }
+      },
+      '2025-05-15': {
+        date: '5월 15일(목)',
+        morning: {
+          location: '성화공원(신양장로교회)',
+          area: '해당 요일 구역(호별)',
+          leader: '정종우',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '서울시 동부여성 발전센터',
+          area: '양꼬치 거리 & 로데오 거리(호별)',
+          leader: '이재영',
+          dress: '정장'
+        }
+      },
+      '2025-05-16': {
+        date: '5월 16일(금)',
+        morning: {
+          location: '왕국회관',
+          area: '연무장길 주변(호별)',
+          leader: '신보현',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '이재영',
+          dress: '정장'
+        }
+      },
+      '2025-05-17': {
+        date: '5월 17일(토)',
+        morning: {
+          location: '왕국회관',
+          area: '성수동 중심가 전시대+가두',
+          leader: '김권일',
+          dress: '정장'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '정민우 010-8728-2629',
+          dress: '평상복'
+        }
+      },
+      '2025-05-18': {
+        date: '5월 18일(일)',
+        morning: {
+          location: '왕국회관',
+          area: '집회 (오전 10시)',
+          leader: '-',
+          dress: '-'
+        },
+        afternoon: {
+          location: '왕국회관',
+          area: '③서울숲 입구, 한강공원 입구(전시대+가두+공원)',
+          leader: '전우재',
+          dress: '평상복'
+        }
+      }
+    };
+    
+    // 모달 관련 함수
+    function showEventDetails(dateKey) {
+      const modal = document.getElementById('eventModal');
+      const eventDetails = document.getElementById('eventDetails');
+      const data = scheduleData[dateKey];
+      
+      if (!data) {
+        return;
+      }
+      
+      let detailsHTML = `<h3>${data.date} 봉사 일정</h3>`;
+      
+      // 오전 봉사 정보
+      detailsHTML += `<h4>오전 봉사 (9:45~12:00)</h4>`;
+      detailsHTML += `<table class="event-table">
+        <tr><th>모임 장소</th><td>${data.morning.location}</td></tr>
+        <tr><th>구역</th><td>${data.morning.area}</td></tr>
+        <tr><th>인도자</th><td>${data.morning.leader}</td></tr>
+        <tr><th>복장</th><td>${data.morning.dress}</td></tr>
+      </table>`;
+      
+      // 오후 봉사 정보
+      detailsHTML += `<h4>오후 봉사 (평일 14:00~16:00 / 주말 14:00~17:00)</h4>`;
+      detailsHTML += `<table class="event-table">
+        <tr><th>모임 장소</th><td>${data.afternoon.location}</td></tr>
+        <tr><th>구역</th><td>${data.afternoon.area}</td></tr>
+        <tr><th>인도자</th><td>${data.afternoon.leader}</td></tr>
+        <tr><th>복장</th><td>${data.afternoon.dress}</td></tr>
+      </table>`;
+      
+      eventDetails.innerHTML = detailsHTML;
+      modal.style.display = 'block';
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('eventModal');
+      modal.style.display = 'none';
+    }
+    
+    // 모달 외부 클릭 시 닫기
+    window.onclick = function(event) {
+      const modal = document.getElementById('eventModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

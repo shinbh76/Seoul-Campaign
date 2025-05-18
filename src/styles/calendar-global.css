@@ -1,0 +1,344 @@
+@import url('https://cdn.jsdelivr.net/npm/noto-sans-kr@1.0.0/font.css');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  background-color: #9333ea;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+}
+
+header p:first-of-type {
+  font-size: 1.56rem;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+header p:last-child {
+  font-size: 1.56rem;
+  margin-bottom: 0;
+}
+
+.tab-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.tab-button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.33rem;  /* 0.95rem에서 40% 증가 */
+}
+
+.tab-button:hover {
+  background-color: #e0e0e0;
+}
+
+.tab-button.active {
+  background-color: #9333ea;
+  color: white;
+}
+
+.chart-content {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 1.95rem;  /* 1.5rem에서 30% 증가 */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.chart-summary {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.chart-summary p {
+  margin: 0.5rem 0;
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.15);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-weight: 700;
+  color: #9333ea;
+  font-size: 1.72rem;  /* 1.43rem에서 20% 증가 */
+  border-bottom: 2.4px solid #9333ea;  /* 2px에서 20% 증가 */
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-radius: 12px;
+  min-height: 100px;
+  background-color: #f3e8ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 3px 8px rgba(147, 51, 234, 0.2);
+}
+
+.calendar-day:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(147, 51, 234, 0.3);
+  background-color: #e9d5ff;
+}
+
+.calendar-day.selected {
+  border: 3px solid #9333ea;
+  background-color: #e9d5ff;
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.calendar-day.empty {
+  background-color: transparent;
+  box-shadow: none;
+  min-height: 0;
+  cursor: default;
+}
+
+.day-date {
+  font-size: 1.4rem;  /* 1.17rem에서 20% 증가 */
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #4b5563;
+}
+
+.day-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #9333ea;
+}
+
+.day-value.zero-participants {
+  color: #9ca3af;
+}
+
+.calendar-day.few-participants {
+  background-color: #f3ebff;
+}
+
+.calendar-day.many-participants {
+  background-color: #e0d0fa;
+}
+
+.participants-details {
+  background-color: #f8f5ff;
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.15);
+}
+
+.participants-title {
+  font-size: 2.03rem;  /* 2.54rem에서 20% 감소 */
+  font-weight: 700;
+  color: #9333ea;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e5d8f4;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.participants-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.participants-table th {
+  background-color: #9333ea;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 1.5rem;  /* 1.15rem에서 30% 증가 */
+}
+
+.participants-table td {
+  padding: 16px 12px;
+  text-align: center;
+  border-bottom: 1px solid #f3e8ff;
+  color: #374151;
+  font-size: 1.39rem;  /* 1.26rem에서 10% 증가 */
+}
+
+.participants-table tr:nth-child(even) {
+  background-color: #f9f0ff;  /* 배경색을 아주 연한 보라색으로 변경 */
+}
+
+.participants-table tr:nth-child(odd) {
+  background-color: #ffffff;  /* 홀수 행은 흰색 배경 */
+}
+
+.participants-table tr:hover {
+  background-color: #f0e6fa;
+}
+
+.no-participants {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-size: 1.2rem;
+  background-color: #f9f6fc;
+  border-radius: 15px;
+  margin: 30px 0;
+  box-shadow: 0 3px 10px rgba(147, 51, 234, 0.1);
+}
+
+.participation-summary {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  padding: 15px;
+  background-color: #f8f5ff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(147, 51, 234, 0.1);
+}
+
+.participation-summary p:first-child {
+  margin: 0.5rem 0;
+  font-size: 1.43rem;  /* 30% 증가 */
+}
+
+.participation-summary p:last-child {
+  margin: 0.5rem 0;
+  font-size: 1.65rem;  /* 50% 증가 */
+  font-weight: 400; /* bold 제거 */
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px 0;
+  color: #666;
+  font-size: 1.26rem;  /* 1.4rem에서 추가로 10% 감소 */
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+  header h1 {
+    font-size: 1.8rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  .tab-container {
+    gap: 5px;
+  }
+  .tab-button {
+    padding: 10px 15px;
+    font-size: 1.26rem;  /* 0.9rem에서 40% 증가 */
+  }
+  .calendar-grid {
+    gap: 4px;
+  }
+  .day-header {
+    font-size: 1.08rem;  /* 0.9rem에서 20% 증가 */
+  }
+  .calendar-day {
+    min-height: 70px;
+    padding: 5px 3px;
+  }
+  .day-date {
+    font-size: 0.84rem;  /* 0.7rem에서 20% 증가 */
+  }
+  .day-value {
+    font-size: 0.9rem;
+  }
+} 
